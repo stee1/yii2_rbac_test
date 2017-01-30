@@ -11,7 +11,20 @@ use yii\web\Controller;
 class SiteController extends Controller
 {
     public function actionIndex() {
-        return $this->render('index');
+        $roles=Yii::$app->authManager->getRolesByUser(Yii::$app->user->getId());
+
+        $permissionNames = ['createPost', 'updatePost'];
+
+        $permissions = [
+            Yii::$app->user->can('createPost'),
+            Yii::$app->user->can('updatePost')
+        ];
+
+        return $this->render('index', [
+            'roles' => $roles,
+            'permissionNames' => $permissionNames,
+            'permissions' => $permissions,
+        ]);
     }
 
     public function actionSignup() {

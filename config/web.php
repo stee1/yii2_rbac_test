@@ -7,6 +7,9 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'components' => [
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'veP-X1SktDHS8CLro5rdUetnbzMQLumR',
@@ -38,7 +41,6 @@ $config = [
             ],
         ],
         'db' => require(__DIR__ . '/db.php'),
-
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
